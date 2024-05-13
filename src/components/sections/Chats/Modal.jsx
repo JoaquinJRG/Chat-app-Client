@@ -9,7 +9,7 @@ export function Modal({ setShowModal, updateChatsList }) {
   const createChat = () => {
     if (!idUser2) return;
 
-    fetch("http://localhost:4000/createChat", {
+    fetch("https://chat-app-server-6z6f.onrender.com/createChat", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
