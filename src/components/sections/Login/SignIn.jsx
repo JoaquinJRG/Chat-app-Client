@@ -21,7 +21,7 @@ export function SignIn({ setShowSignIn, setIsLogged }) {
       })
     }
 
-    fetch("http://localhost:4000/signIn", options).then(res => res.json()).then(data => {
+    fetch("https://chat-app-server-6z6f.onrender.com/signIn", options).then(res => res.json()).then(data => {
       if (data) {
         setIsLogged(true);
         localStorage.setItem("isLogged", true)
