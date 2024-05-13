@@ -58,7 +58,7 @@ function HomeSection({ setOpenChats, setOpenHome }) {
           <path d="M14.5 9h.01" />
           <path d="M9.5 13a3.5 3.5 0 0 0 5 0" />
         </svg>
-        <h1 className="text-5xl text-indigo-500">Bienvenido a MiChat👋</h1>
+        <h1 className="text-5xl text-center text-indigo-500">Bienvenido a MiChat👋</h1>
         <span className="text-4xl italic font-bold text-indigo-800">{name}</span>
         <button
           onClick={() => {

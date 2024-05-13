@@ -69,12 +69,20 @@ export function Settings() {
                 {userData.correo}
               </li>
             </ul>
-            <form onSubmit={sendImg} className="border flex items-center gap-2 mt-4 bg-white">
-              <input type="file" name="image" accept="image/*" className="border p-2" />
+            <form onSubmit={sendImg} className="flex items-center justify-start gap-2 mt-4 ">
+              <label className="flex items-center gap-2 bg-indigo-500 text-white rounded-lg px-3 py-2 transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer" htmlFor="image">
+                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-camera">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+                  <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                </svg>
+                Seleccionar Imagen
+              </label>
+              <input type="file" id="image" name="image" accept="image/*" className="hidden" />
               <input
                 type="submit"
                 value="Aceptar"
-                className="cursor-pointer"
+                className="bg-indigo-500 text-white rounded-lg px-3 py-2 transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer"
               />
             </form>
           </div>
