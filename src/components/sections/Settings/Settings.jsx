@@ -31,7 +31,7 @@ export function Settings() {
     data.append("img", event.target.image.files[0]);
     data.append("id", userData.id);
 
-    fetch("http://localhost:4000/addImg", {
+    fetch("https://chat-app-server-6z6f.onrender.com/addImg", {
       method: "POST",
       body: data
     }).then(res => res.json()).then(data => console.log(data));
