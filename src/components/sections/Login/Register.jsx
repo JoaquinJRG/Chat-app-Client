@@ -23,7 +23,7 @@ export function Register({ setShowSignIn }) {
       })
     }
 
-    fetch("http://localhost:4000/createUsuario", options)
+    fetch("https://chat-app-server-6z6f.onrender.com/createUsuario", options)
       .then(res => res.json())
       .then(data => {
         if (data) {
