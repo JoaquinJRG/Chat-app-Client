@@ -7,7 +7,7 @@ export function Favs() {
   const [favList, setFavList] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/favorites/${idUser}`)
+    fetch(`https://chat-app-server-6z6f.onrender.com/favorites/${idUser}`)
       .then(res => res.json())
       .then(data => setFavList(data));
   }, []);

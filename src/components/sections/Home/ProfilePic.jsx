@@ -8,7 +8,7 @@ export function ProfilePic() {
   const [imageBase64, setImageBase64] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/img/${id}`)
+    fetch(`https://chat-app-server-6z6f.onrender.com/img/${id}`)
       .then(res => res.json())
       .then(data => {
         setImageBase64(data[0].img_perfil)
