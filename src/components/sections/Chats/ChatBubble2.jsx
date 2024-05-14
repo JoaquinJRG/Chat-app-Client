@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DotsIcon } from "../../icons/DotsIcon";
 import { StarIcon } from "../../icons/StarIcon";
+import { CopyIcon } from "../../icons/CopyIcon";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,6 +10,22 @@ export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
   const formattedDate = date.toLocaleTimeString();
   const [showMenu, setShowMenu] = useState(false);
   const [showFav, setShowFav] = useState(isFav);
+
+  const copyText = () => {
+    navigator.clipboard.writeText(children);
+    setShowMenu(false);
+    //Mostrar notificación
+    toast.success('Mensaje copiado', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   const addToFavorites = () => {
     fetch(`https://chat-app-server-6z6f.onrender.com/addToFavorites/${idMensaje}`)
@@ -54,11 +71,12 @@ export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
                 <StarIcon width={14} height={14} />
                 <span>Favorito</span>
               </li>
-              <li className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200">
-                <span>Modificar</span>
-              </li>
-              <li className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200">
-                <span>Eliminar</span>
+              <li
+                onClick={copyText}
+                className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200"
+              >
+                <CopyIcon width={14} height={14} />
+                <span>Copiar</span>
               </li>
             </ul>
           </div>

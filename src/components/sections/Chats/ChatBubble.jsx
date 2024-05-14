@@ -1,13 +1,33 @@
 import { useState } from "react";
 import { DotsIcon } from "../../icons/DotsIcon";
+import { CopyIcon } from "../../icons/CopyIcon";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export function ChatBubble({ children, fecha, idMensaje }) {
   const date = new Date(Math.trunc(fecha));
   const formattedDate = date.toLocaleTimeString();
   const [showMenu, setShowMenu] = useState(false);
 
+  const copyText = () => {
+    navigator.clipboard.writeText(children);
+    setShowMenu(false);
+    //Mostrar notificación
+    toast.success('Mensaje copiado', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       <div className="flex items-center justify-end gap-2">
         <div className="cursor-pointer">
           <div className={`${showMenu ? "relative" : "hidden"} z-20 bg-white divide-y divide-gray-100 rounded-xl shadow w-44`}>
@@ -17,6 +37,13 @@ export function ChatBubble({ children, fecha, idMensaje }) {
               </li>
               <li className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200">
                 <span>Eliminar</span>
+              </li>
+              <li
+                onClick={copyText}
+                className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200"
+              >
+                <CopyIcon width={14} height={14} />
+                <span>Copiar</span>
               </li>
             </ul>
           </div>
