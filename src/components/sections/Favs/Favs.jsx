@@ -23,8 +23,10 @@ export function Favs() {
                 className="flex items-center justify-between bg-white px-3 py-6 rounded-xl shadow-lg"
                 key={index}
               >
-                <section className="flex items-center">
-                  <div>
+                <section className="flex items-center gap-5">
+                  <div className="flex flex-col items-center justify-center">
+                    {msg.img_perfil == null ? <img src="/user.svg" alt="Imagen de perfil" className="w-20 h-20 border-2 border-indigo-500 rounded-full" /> : <img src={`data:image/jpeg;base64,${msg.img_perfil}`} alt="Imagen de perfil" className="w-20 h-20 border-2 border-indigo-500 rounded-full" />}
+                    <p>{msg.nombre}</p>
                   </div>
                   <div className="flex items-center px-5 py-2 min-w-28 max-w-64 bg-[#F4F8FB] text-xl text-wrap text-center rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-md">
                     <p>{msg.texto}</p>
