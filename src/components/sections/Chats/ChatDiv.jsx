@@ -15,7 +15,8 @@ export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUse
   const [socket, setSocket] = useState(null);
   const [messajeList, setMessajeList] = useState([]);
   const [showScrollButton, setShowScrollButton] = useState(false);
-
+  const [isTyping, setIsTyping] = useState(false);
+  let typingTime;
 
   useEffect(() => {
 
@@ -35,6 +36,17 @@ export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUse
       newSocket.on("recive_message", (data) => {
         setMessajeList(prevMsg => [...prevMsg, data]);
       })
+
+    });
+
+    newSocket.on("is_typing", () => {
+      setIsTyping(true);
+
+      if (typingTime) clearTimeout(typingTime);
+      //Ocultar a los 2 segundos
+      typingTime = setTimeout(() => {
+        setIsTyping(false);
+      }, 1000);
 
     });
 
@@ -58,6 +70,7 @@ export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUse
     return () => {
       newSocket.disconnect();
       newSocket.off("recive_message");
+      newSocket.off("is_typing");
       chatDiv.removeEventListener("scroll", handleScroll)
     };
   }, []);
@@ -92,13 +105,20 @@ export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUse
     chatDiv.scrollTop = chatDiv.scrollHeight;
   }
 
+  const handleTyping = () => {
+    socket.emit("typing", idChat);
+  };
+
   return (
     <div className={`lg:py-4 lg:px-8 lg:w-2/3 w-full h-[95vh] lg:h-screen absolute lg:static`}>
       <div className="px-4 h-full bg-white lg:rounded-xl lg:shadow-md">
         <header className="flex justify-between items-center border-b border-gray-300 h-[10%]">
           <div className="flex gap-4 items-center">
             {imgUser == null ? <UserIcon width={30} height={30} /> : <img src={`data:image/jpeg;base64,${imgUser}`} alt="Imagen de perfil" className="w-10 h-10 rounded-full" />}
-            <p>{nameUser}</p>
+            <div>
+              <p className="text-xl">{nameUser}</p>
+              {isTyping ? <p className="text-indigo-500">Escribiendo ...</p> : <p></p>}
+            </div>
           </div>
           <div className="flex">
             <div>
@@ -136,6 +156,7 @@ export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUse
           <EmojiModal text={text} setText={setText} />
           <form className="w-full flex items-center gap-5" onSubmit={sendText}>
             <input
+              onKeyDown={handleTyping}
               onChange={(e) => setText(e.target.value)}
               value={text}
               type="text"
