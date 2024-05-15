@@ -84,7 +84,7 @@ export function Chats() {
                     }
                   }}
                   key={index}
-                  className={` w-full flex items-center gap-4 bg-white p-3 rounded-xl shadow-md border-2  hover:border-indigo-500 cursor-pointer ${idChat == chatData["id_chat"] ? "border-indigo-500" : "border-transparent"}`}
+                  className={`fade-in w-full flex items-center gap-4 bg-white p-3 rounded-xl shadow-md border-2  hover:border-indigo-500 cursor-pointer ${idChat == chatData["id_chat"] ? "border-indigo-500" : "border-transparent"}`}
                 >
                   <div className="border-2 border-indigo-500 text-indigo-500 rounded-full">
                     {chatData["img_perfil"] == null ? <UserIcon width={64} height={64} /> : <img src={`data:image/jpeg;base64,${chatData["img_perfil"]}`} alt="Imagen de perfil" className="w-16 h-16 rounded-full" />}
