@@ -114,7 +114,7 @@ export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUse
       <div className="px-4 h-full bg-white lg:rounded-xl lg:shadow-md">
         <header className="flex justify-between items-center border-b border-gray-300 h-[10%]">
           <div className="flex gap-4 items-center">
-            {imgUser == null ? <UserIcon width={30} height={30} /> : <img src={`data:image/jpeg;base64,${imgUser}`} alt="Imagen de perfil" className="w-10 h-10 rounded-full" />}
+            {imgUser == null ? <img src="/user.svg" alt="Imagen de perfil" className="w-10 h-10 border-2 border-indigo-500 rounded-full" /> : <img src={`data:image/jpeg;base64,${imgUser}`} alt="Imagen de perfil" className="w-10 h-10 border-2 border-indigo-500 rounded-full" />}
             <div>
               <p className="text-xl">{nameUser}</p>
               {isTyping ? <p className="text-indigo-500">Escribiendo ...</p> : <p></p>}

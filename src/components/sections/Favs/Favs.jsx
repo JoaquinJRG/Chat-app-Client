@@ -1,10 +1,20 @@
 import { useState, useEffect } from "react";
 import { StarOffIcon } from "../../icons/StarOffIcon";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Favs() {
 
   const idUser = JSON.parse(localStorage.getItem("userData")).id;
   const [favList, setFavList] = useState([]);
+
+  const updateFavList = () => {
+    fetch(`https://chat-app-server-6z6f.onrender.com/favorites/${idUser}`)
+      .then(res => res.json())
+      .then(data => {
+        setFavList(data);
+      });
+  }
 
   useEffect(() => {
     fetch(`https://chat-app-server-6z6f.onrender.com/favorites/${idUser}`)
@@ -12,15 +22,47 @@ export function Favs() {
       .then(data => setFavList(data));
   }, []);
 
+  const removeFav = (id) => {
+    fetch(`https://chat-app-server-6z6f.onrender.com/removeFromFavorites/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        updateFavList();
+        if (data.rowsAffected) {
+          toast.success('Mensaje eliminado de favoritos.', {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          toast.error('Error', {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      });
+  }
+
   return (
     <main className="p-4 mt-10 lg:mt-0">
+      <ToastContainer />
       <h1 className="text-4xl text-indigo-500 mb-5">Favoritos</h1>
       <div className="flex flex-col gap-4 w-full lg:w-3/4 h-[90vh] overflow-y-scroll pb-5">
         {
           favList ? (
             favList.map((msg, index) => (
               <div
-                className="flex items-center justify-between bg-white px-3 py-6 rounded-xl shadow-lg"
+                className="flex items-center justify-between bg-white px-10 py-6 rounded-xl shadow-lg"
                 key={index}
               >
                 <section className="flex items-center gap-5">
@@ -32,7 +74,10 @@ export function Favs() {
                     <p>{msg.texto}</p>
                   </div>
                 </section>
-                <div className="cursor-pointer bg-[#F4F8FB] p-3 rounded-lg hover:text-indigo-500">
+                <div
+                  onClick={() => removeFav(msg.id_mensaje)}
+                  className="cursor-pointer bg-[#F4F8FB] p-3 rounded-lg hover:text-indigo-500"
+                >
                   <StarOffIcon />
                 </div>
               </div>
