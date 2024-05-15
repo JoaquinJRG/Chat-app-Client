@@ -42,7 +42,7 @@ export function Settings() {
     <main className="p-4 mt-10 lg:mt-0">
       <ToastContainer />
       <h1 className="text-4xl text-indigo-500 mb-5">Configuración</h1>
-      <section className="">
+      <section className="fade-in-up">
         <h2 className="text-3xl mb-5">Perfil</h2>
         <div className="flex flex-col lg:flex-row gap-10">
           <div>

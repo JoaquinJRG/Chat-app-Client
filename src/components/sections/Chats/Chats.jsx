@@ -58,7 +58,7 @@ export function Chats() {
             placeholder="Buscar ..."
             className="w-full p-2 my-4 rounded-xl shadow-md outline-none border-2 border-transparent focus:border-indigo-500"
           />
-          <article className="w-full h-96 overflow-y-scroll flex flex-col gap-3 pr-1">
+          <article className="w-full h-[90vh] overflow-y-scroll flex flex-col gap-3">
             {
               listaChats &&
               filteredChats.map((chatData, index) => (

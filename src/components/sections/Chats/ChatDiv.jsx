@@ -109,7 +109,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
   };
 
   return (
-    <div className={`lg:py-4 lg:px-8 lg:w-2/3 w-full h-[95vh] lg:h-screen absolute lg:static`}>
+    <div className={`lg:py-4 lg:px-8 lg:w-2/3 w-full h-[95vh] lg:h-screen absolute lg:static fade-in-up`}>
       <div className="px-4 h-full bg-white lg:rounded-xl lg:shadow-md">
         <header className="flex justify-between items-center border-b border-gray-300 h-[10%]">
           <div className="flex gap-4 items-center">

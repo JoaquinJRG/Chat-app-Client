@@ -50,7 +50,7 @@ export function SignIn({ setShowSignIn, setIsLogged }) {
   return (
     <>
       <ToastContainer />
-      <form onSubmit={(e) => signIn(e)} className="flex flex-col justify-between gap-3 w-96 bg-white shadow-md rounded-xl p-4">
+      <form onSubmit={(e) => signIn(e)} className="flex flex-col justify-between gap-3 w-96 bg-white shadow-md rounded-xl p-4 fade-in-up">
         <h1 className="text-2xl mb-3">Iniciar Sesión</h1>
         <input
           type="email"

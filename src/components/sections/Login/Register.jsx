@@ -60,7 +60,7 @@ export function Register({ setShowSignIn }) {
   return (
     <>
       <ToastContainer />
-      <form onSubmit={(e) => register(e)} className={`flex flex-col justify-between gap-3 w-96 bg-white shadow-md rounded-xl p-4`}>
+      <form onSubmit={(e) => register(e)} className={`flex flex-col justify-between gap-3 w-96 bg-white shadow-md rounded-xl p-4 fade-in-up`}>
         <h1 className="text-2xl mb-3">Crear cuenta</h1>
         <input
           type="text"

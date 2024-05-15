@@ -62,7 +62,7 @@ export function Favs() {
           favList ? (
             favList.map((msg, index) => (
               <div
-                className="flex items-center justify-between bg-white px-10 py-6 rounded-xl shadow-lg"
+                className="flex items-center justify-between bg-white px-10 py-6 rounded-xl shadow-lg fade-in-up"
                 key={index}
               >
                 <section className="flex items-center gap-5">

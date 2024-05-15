@@ -25,7 +25,7 @@ export function Home({ setIsLogged }) {
         </button>
       </header>
       <main className="lg:pt-0 h-screen flex">
-        <aside className={`bg-white w-60 h-screen lg:flex z-40 shadow-xl ${openSidebar ? 'flex absolute' : 'hidden lg:flex '}`} >
+        <aside className={`bg-white w-60 h-screen lg:flex z-40 shadow-xl ${openSidebar ? 'flex absolute fade-in-right' : 'hidden lg:flex '}`} >
           <MyNavbar
             openHome={openHome} setOpenHome={setOpenHome}
             openChats={openChats} setOpenChats={setOpenChats}
@@ -50,7 +50,7 @@ function HomeSection({ setOpenChats, setOpenHome }) {
   const name = JSON.parse(localStorage.getItem("userData")).nombre;
 
   return (
-    <main className="p-4 mt-10 lg:mt-0 h-full flex items-center justify-center">
+    <main className="p-4 mt-10 lg:mt-0 h-full flex items-center justify-center fade-in-up">
       <div className="flex flex-col gap-10 items-center text-indigo-500">
         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-message-chatbot">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
