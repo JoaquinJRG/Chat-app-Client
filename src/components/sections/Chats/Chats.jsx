@@ -24,13 +24,13 @@ export function Chats() {
   }, [])
 
   const updateChatsList = () => {
-    // Aquí vuelves a cargar la lista de chats después de crear un nuevo chat
+    // Volver a cargar la lista de chats después de crear un nuevo chat
     fetch(`https://chat-app-server-6z6f.onrender.com/myCreateChats/${id}`)
       .then(res => res.json())
       .then(data => {
         setListaChats(data);
       });
-  }
+  };
 
   let filteredChats = listaChats;
 
@@ -64,14 +64,27 @@ export function Chats() {
               filteredChats.map((chatData, index) => (
                 <section
                   onClick={() => {
-                    setIdChat(chatData["id_chat"]);
-                    setIdUser(chatData["id_usuario"]);
-                    setNameUser(chatData["nombre"]);
-                    setImgUser(chatData["img_perfil"]);
-                    setShowChatDiv(!showChatDiv);
+                    if (showChatDiv) {
+                      if (chatData["id_chat"] == idChat) {
+                        setShowChatDiv(false);
+                        setIdChat("");
+                      } else {
+                        setShowChatDiv(false);
+                        setIdChat(chatData["id_chat"]);
+                        setIdUser(chatData["id_usuario"]);
+                        setNameUser(chatData["nombre"]);
+                        setImgUser(chatData["img_perfil"]);
+                      }
+                    } else {
+                      setIdChat(chatData["id_chat"]);
+                      setIdUser(chatData["id_usuario"]);
+                      setNameUser(chatData["nombre"]);
+                      setImgUser(chatData["img_perfil"]);
+                      setShowChatDiv(true);
+                    }
                   }}
                   key={index}
-                  className={`w-full flex items-center gap-4 bg-white p-3 rounded-xl shadow-md border-2 border-transparent hover:border-indigo-500 cursor-pointer`}
+                  className={` w-full flex items-center gap-4 bg-white p-3 rounded-xl shadow-md border-2  hover:border-indigo-500 cursor-pointer ${idChat == chatData["id_chat"] ? "border-indigo-500" : "border-transparent"}`}
                 >
                   <div className="border-2 border-indigo-500 text-indigo-500 rounded-full">
                     {chatData["img_perfil"] == null ? <UserIcon width={64} height={64} /> : <img src={`data:image/jpeg;base64,${chatData["img_perfil"]}`} alt="Imagen de perfil" className="w-16 h-16 rounded-full" />}
@@ -84,7 +97,7 @@ export function Chats() {
         </div>
       </div >
       {
-        showChatDiv && <ChatDiv setShowChatDiv={setShowChatDiv} idChat={idChat} myId={id} userId={idUser} nameUser={nameUser} imgUser={imgUser} />
+        showChatDiv && <ChatDiv setIdChat={setIdChat} setShowChatDiv={setShowChatDiv} idChat={idChat} myId={id} userId={idUser} nameUser={nameUser} imgUser={imgUser} />
       }
     </div >
   )

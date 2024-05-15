@@ -5,11 +5,10 @@ import { XIcon } from "../../icons/XIcon";
 import { ChatBubble } from "./ChatBubble";
 import { ChatBubble2 } from "./ChatBubble2";
 import { EmojiModal } from "./EmojiModals";
-import { UserIcon } from "../../icons/UserIcon";
 import io from "socket.io-client";
 import { ArrowDownIcon } from "../../icons/ArrowDownIcon";
 
-export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUser }) {
+export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameUser, imgUser }) {
 
   const [text, setText] = useState("");
   const [socket, setSocket] = useState(null);
@@ -124,7 +123,12 @@ export function ChatDiv({ setShowChatDiv, idChat, myId, userId, nameUser, imgUse
             <div>
               <DotsIcon />
             </div>
-            <div className="cursor-pointer hover:text-indigo-500 transition-colors" onClick={() => setShowChatDiv(false)}>
+            <div className="cursor-pointer hover:text-indigo-500 transition-colors"
+              onClick={() => {
+                setShowChatDiv(false)
+                setIdChat("");
+              }}
+            >
               <XIcon />
             </div>
           </div>
