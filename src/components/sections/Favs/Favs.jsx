@@ -62,12 +62,12 @@ export function Favs() {
           favList ? (
             favList.map((msg, index) => (
               <div
-                className="flex items-center justify-between bg-white px-10 py-6 rounded-xl shadow-lg fade-in-up"
+                className="flex items-center justify-between bg-white px-2 lg:px-10 py-3 lg:py-6 rounded-xl shadow-lg fade-in-up"
                 key={index}
               >
                 <section className="flex items-center gap-5">
                   <div className="flex flex-col items-center justify-center">
-                    {msg.img_perfil == null ? <img src="/user.svg" alt="Imagen de perfil" className="w-20 h-20 border-2 border-indigo-500 rounded-full" /> : <img src={`data:image/jpeg;base64,${msg.img_perfil}`} alt="Imagen de perfil" className="w-20 h-20 border-2 border-indigo-500 rounded-full" />}
+                    {msg.img_perfil == null ? <img src="/user.svg" alt="Imagen de perfil" className="w-12 h-12 lg:w-20 lg:h-20 border-2 border-indigo-500 rounded-full" /> : <img src={`data:image/jpeg;base64,${msg.img_perfil}`} alt="Imagen de perfil" className="w-12 h-12 lg:w-20 lg:h-20 border-2 border-indigo-500 rounded-full" />}
                     <p>{msg.nombre}</p>
                   </div>
                   <div className="flex items-center px-5 py-2 min-w-28 max-w-64 bg-[#F4F8FB] text-xl text-wrap text-center rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-md">
