@@ -35,7 +35,7 @@ export function Modal({ setShowModal, updateChatsList }) {
 
   return (
     <div onClick={clickOutside} className="w-full lg:w-11/12 h-full flex justify-center items-center fixed backdrop-blur-sm z-20 overflow-y-auto shadow-md">
-      <div ref={modalRef} className="w-80 p-4 bg-white rounded-md z-40 fade-in-up">
+      <div ref={modalRef} className="w-80 p-4 bg-white rounded-md z-40 fade-in-up border">
         <header className="flex items-center justify-between mb-8">
           <h3 className="text-2xl">Nuevo Chat</h3>
           <button onClick={() => setShowModal(false)} className="hover:text-indigo-500 transition-colors"><XIcon /></button>
