@@ -120,9 +120,6 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
             </div>
           </div>
           <div className="flex">
-            <div>
-              <DotsIcon />
-            </div>
             <div className="cursor-pointer hover:text-indigo-500 transition-colors"
               onClick={() => {
                 setShowChatDiv(false)
