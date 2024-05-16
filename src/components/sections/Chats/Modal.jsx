@@ -1,5 +1,5 @@
 import { XIcon } from "../../icons/XIcon";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export function Modal({ setShowModal, updateChatsList }) {
 
