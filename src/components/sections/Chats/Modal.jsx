@@ -3,8 +3,9 @@ import { useState } from "react";
 
 export function Modal({ setShowModal, updateChatsList }) {
 
-  const idUser1 = JSON.parse(localStorage.getItem("userData")).id
-  const [idUser2, setIdUser2] = useState("")
+  const idUser1 = JSON.parse(localStorage.getItem("userData")).id;
+  const [idUser2, setIdUser2] = useState("");
+  const modalRef = useRef();
 
   const createChat = () => {
     if (!idUser2) return;
@@ -24,11 +25,17 @@ export function Modal({ setShowModal, updateChatsList }) {
         updateChatsList();
         setShowModal(false);
       });
+  };
+
+  const clickOutside = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      setShowModal(false);
+    }
   }
 
   return (
-    <div className="w-full lg:w-11/12 h-full flex justify-center items-center fixed bg-black z-20 bg-opacity-40 overflow-y-auto shadow-md">
-      <div className="w-80 p-4 bg-white rounded-md z-40 fade-in-up">
+    <div onClick={clickOutside} className="w-full lg:w-11/12 h-full flex justify-center items-center fixed bg-black z-20 bg-opacity-40 overflow-y-auto shadow-md">
+      <div ref={modalRef} className="w-80 p-4 bg-white rounded-md z-40 fade-in-up">
         <header className="flex items-center justify-between mb-8">
           <h3 className="text-2xl">Nuevo Chat</h3>
           <button onClick={() => setShowModal(false)} className="hover:text-indigo-500 transition-colors"><XIcon /></button>

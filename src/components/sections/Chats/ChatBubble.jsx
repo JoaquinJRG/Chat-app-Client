@@ -3,6 +3,8 @@ import { DotsIcon } from "../../icons/DotsIcon";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { TrashIcon } from "../../icons/TrashIcon";
+import { EditIcon } from "../../icons/EditIcon";
 
 export function ChatBubble({ children, fecha, idMensaje }) {
   const date = new Date(Math.trunc(fecha));
