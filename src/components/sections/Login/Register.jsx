@@ -1,12 +1,18 @@
 import { useState } from "react";
+import { EyeOffIcon } from "../../icons/EyeOffIcon";
+import { EyeIcon } from "../../icons/EyeIcon";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { KeyIcon } from "../../icons/KeyIcon";
+import { MailIcon } from "../../icons/MailIcon";
+import { UserIcon } from "../../icons/UserIcon";
 
 export function Register({ setShowSignIn }) {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const register = (e) => {
     e.preventDefault();
@@ -60,32 +66,47 @@ export function Register({ setShowSignIn }) {
   return (
     <>
       <ToastContainer />
-      <form onSubmit={(e) => register(e)} className={`flex flex-col justify-between gap-3 w-96 bg-white shadow-md rounded-xl p-4 fade-in-up`}>
-        <h1 className="text-2xl mb-3">Crear cuenta</h1>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          onChange={(e) => setName(e.target.value)}
-          className="p-2 rounded-xl outline-none bg-[#F4F8FB] border-2 focus:border-indigo-500"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Correo"
-          onChange={(e) => setEmail(e.target.value)}
-          className="p-2 rounded-xl outline-none bg-[#F4F8FB] border-2 focus:border-indigo-500"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          onChange={(e) => setPassword(e.target.value)}
-          className="p-2 rounded-xl outline-none bg-[#F4F8FB] border-2 focus:border-indigo-500"
-          required
-        />
+      <form onSubmit={(e) => register(e)} className={`flex flex-col select-none justify-between gap-3 w-96 bg-white shadow-md rounded-xl p-4 fade-in-up`}>
+        <h1 className="text-2xl mb-3 font-semibold">Crear cuenta</h1>
+        <div className="flex items-center gap-2 p-2 rounded-xl outline-none bg-[#F4F8FB] shadow-md border-2 border-transparent focus-within:border-indigo-500">
+          <UserIcon />
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            onChange={(e) => setName(e.target.value)}
+            className="w-full outline-none bg-[#F4F8FB]"
+            required
+          />
+        </div>
+        <div className="flex items-center gap-2 p-2 rounded-xl outline-none bg-[#F4F8FB] shadow-md border-2 border-transparent focus-within:border-indigo-500">
+          <MailIcon />
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo"
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full outline-none bg-[#F4F8FB]"
+            required
+          />
+        </div>
+        <div className="flex items-center gap-2 p-2 rounded-xl outline-none bg-[#F4F8FB] shadow-md border-2 border-transparent focus-within:border-indigo-500">
+          <KeyIcon />
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Contraseña"
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full outline-none bg-[#F4F8FB]"
+            required
+          />
+          <div
+            onClick={() => setShowPassword(!showPassword)}
+            className="cursor-pointer hover:text-indigo-500"
+          >
+            {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+          </div>
+        </div>
         <input
           type="submit"
           name="submit"
