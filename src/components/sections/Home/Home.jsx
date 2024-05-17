@@ -14,6 +14,12 @@ export function Home({ setIsLogged }) {
   const [openFavs, setOpenFavs] = useState(false);
   const [openConfig, setOpenConfig] = useState(false);
 
+  const handleOutsideClick = () => {
+    if (openSidebar) {
+      setOpenSidebar(false);
+    }
+  }
+
   return (
     <div className="h-screen">
       <header className="flex items-center bg-white w-full h-10 lg:hidden fixed z-50 shadow-sm">
@@ -34,7 +40,10 @@ export function Home({ setIsLogged }) {
             setIsLogged={setIsLogged}
           />
         </aside>
-        <section className="bg-[#F4F8FB] w-screen h-screen overflow-hidden">
+        <section
+          onClick={handleOutsideClick}
+          className={`bg-[#F4F8FB] w-screen h-screen overflow-hidden ${openSidebar ? "z-30 blur-sm select-none" : ""}`}
+        >
           {openHome && <HomeSection setOpenChats={setOpenChats} setOpenHome={setOpenHome} />}
           {openChats && <Chats />}
           {openFavs && <Favs />}
