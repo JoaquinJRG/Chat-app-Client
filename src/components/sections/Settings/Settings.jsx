@@ -6,6 +6,7 @@ import { ProfilePic } from "../Home/ProfilePic";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { DeleteModal } from "./DeleteModal";
+import { useState } from "react";
 
 export function Settings() {
 
