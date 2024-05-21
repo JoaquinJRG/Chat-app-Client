@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { DeleteModal } from "./DeleteModal";
 import { useState } from "react";
 
-export function Settings() {
+export function Settings({ setIsLogged }) {
 
   const userData = JSON.parse(localStorage.getItem("userData"))
   const [showDeleteModal, setDeleteModal] = useState(false);
@@ -43,7 +43,7 @@ export function Settings() {
 
   return (
     <main className="mt-10 lg:mt-0">
-      {showDeleteModal && <DeleteModal setShowModal={setDeleteModal} />}
+      {showDeleteModal && <DeleteModal setShowModal={setDeleteModal} setIsLogged={setIsLogged} />}
       <ToastContainer />
       <div className="p-4">
         <h1 className="text-4xl text-indigo-500 mb-5">Configuración</h1>

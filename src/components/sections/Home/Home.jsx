@@ -47,7 +47,7 @@ export function Home({ setIsLogged }) {
           {openHome && <HomeSection setOpenChats={setOpenChats} setOpenHome={setOpenHome} />}
           {openChats && <Chats />}
           {openFavs && <Favs />}
-          {openConfig && <Settings />}
+          {openConfig && <Settings setIsLogged={setIsLogged} />}
         </section>
       </main>
     </div >

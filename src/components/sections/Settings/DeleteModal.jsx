@@ -1,16 +1,22 @@
 import { useRef } from "react";
 import { XIcon } from "../../icons/XIcon";
 
-export function DeleteModal({ setShowModal }) {
+export function DeleteModal({ setShowModal, setIsLogged }) {
 
-  const idUser1 = JSON.parse(localStorage.getItem("userData")).id;
+  const idUser = JSON.parse(localStorage.getItem("userData")).id;
   const modalRef = useRef();
 
   const clickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setShowModal(false);
     }
-  }
+  };
+
+  const handleClick = () => {
+    fetch(`http://chat-app-server-6z6f.onrender.com/deleteUser/${idUser}`, { method: "DELETE" })
+      .then(res => res.json())
+      .then(data => setIsLogged(false));
+  };
 
   return (
     <div onClick={clickOutside} className="w-full lg:w-11/12 h-full flex justify-center items-center fixed backdrop-blur-sm z-20 overflow-y-auto shadow-md">
@@ -22,7 +28,12 @@ export function DeleteModal({ setShowModal }) {
         <main>
           <div className="flex item-center justify-between">
             <button onClick={() => setShowModal(false)} className="bg-white-500 text-indigo-500 border border-indigo-500 rounded-lg px-3 py-2 transition-all hover:-translate-y-1 hover:shadow-lg">Cancelar</button>
-            <button className="bg-indigo-500 text-white rounded-lg px-3 py-2 transition-all hover:-translate-y-1 hover:shadow-lg">Aceptar</button>
+            <button
+              onClick={handleClick}
+              className="bg-indigo-500 text-white rounded-lg px-3 py-2 transition-all hover:-translate-y-1 hover:shadow-lg"
+            >
+              Aceptar
+            </button>
           </div>
         </main>
       </div>
