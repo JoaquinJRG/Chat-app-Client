@@ -17,6 +17,12 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
   const [isTyping, setIsTyping] = useState(false);
   let typingTime;
 
+  //Sonido notificación 
+  const pop = () => {
+    let sound = new Audio("pop2.mp3");
+    sound.play();
+  }
+
   useEffect(() => {
 
     fetch(`https://chat-app-server-6z6f.onrender.com/chatMessages/${idChat}`)
@@ -34,6 +40,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
 
       newSocket.on("recive_message", (data) => {
         setMessajeList(prevMsg => [...prevMsg, data]);
+        pop();
       })
 
     });
@@ -97,6 +104,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
     socket.emit("send_message", msg);
     setMessajeList(prevMsg => [...prevMsg, msg]);
     setText("");
+    pop();
   }
 
   const scrollDown = () => {
