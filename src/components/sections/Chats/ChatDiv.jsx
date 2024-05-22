@@ -19,7 +19,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
 
   //Sonido notificación 
   const pop = () => {
-    let sound = new Audio("pop2.mp3");
+    let sound = new Audio("pop.mp3");
     sound.play();
   }
 
