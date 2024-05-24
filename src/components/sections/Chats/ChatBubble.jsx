@@ -4,7 +4,7 @@ import { CopyIcon } from "../../icons/CopyIcon";
 import { TrashIcon } from "../../icons/TrashIcon";
 import { EditIcon } from "../../icons/EditIcon";
 
-export function ChatBubble({ children, fecha, idMensaje }) {
+export function ChatBubble({ children, fecha, idMensaje, deleteMessage }) {
   const date = new Date(Math.trunc(fecha));
   const formattedDate = date.toLocaleTimeString();
   const [showMenu, setShowMenu] = useState(false);
@@ -15,6 +15,15 @@ export function ChatBubble({ children, fecha, idMensaje }) {
     //Mostrar notificación
   };
 
+  const handleDelete = () => {
+    deleteMessage(idMensaje);
+    setShowMenu(false);
+  };
+
+  const handleEdit = () => {
+    setShowMenu(false);
+  };
+
   return (
     <>
       <div className="flex flex-col">
@@ -23,12 +32,16 @@ export function ChatBubble({ children, fecha, idMensaje }) {
             <div className={`${showMenu ? "relative" : "hidden"} z-20 bg-white divide-y divide-gray-100 rounded-xl shadow w-44`}>
               <ul className="py-2 text-sm text-gray-700 bg-indigo-100 rounded-xl">
                 <li
+                  onClick={handleEdit}
                   className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200"
                 >
                   <EditIcon width={14} height={14} />
                   <span>Editar</span>
                 </li>
-                <li className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200">
+                <li
+                  onClick={handleDelete}
+                  className="flex items-center gap-2 px-4 py-2 hover:bg-indigo-200"
+                >
                   <TrashIcon width={14} height={14} />
                   <span>Eliminar</span>
                 </li>

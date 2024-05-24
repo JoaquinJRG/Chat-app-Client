@@ -56,6 +56,10 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
 
     });
 
+    newSocket.on("message_deleted", (id) => {
+      setMessajeList(prevList => prevList.filter(msg => msg.id_mensaje !== id));
+    });
+
     newSocket.on('disconnect', () => {
       console.log('Desconectado del servidor Socket.IO id Chat: ' + idChat);
     });
@@ -77,6 +81,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
       newSocket.disconnect();
       newSocket.off("recive_message");
       newSocket.off("is_typing");
+      newSocket.off("message_deleted");
       chatDiv.removeEventListener("scroll", handleScroll)
     };
   }, []);
@@ -116,6 +121,11 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
     socket.emit("typing", idChat);
   };
 
+  const deleteMessage = (id) => {
+    socket.emit("delete_message", { idMsg: id, idChat: idChat });
+    setMessajeList(prevList => prevList.filter(msg => msg.id_mensaje !== id));
+  };
+
   return (
     <div className={`lg:py-4 lg:px-8 lg:w-2/3 w-full h-[95vh] lg:h-screen absolute lg:static fade-in-up`}>
       <div className="px-4 h-full bg-white lg:rounded-xl lg:shadow-md">
@@ -143,7 +153,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
             messajeList &&
             messajeList.map((msg, index) => (
               msg.usuario_envia == myId ? (
-                <ChatBubble key={index} fecha={msg.fecha} idMensaje={msg.id_mensaje}>{msg.texto}</ChatBubble>
+                <ChatBubble key={index} fecha={msg.fecha} idMensaje={msg.id_mensaje} deleteMessage={deleteMessage}>{msg.texto}</ChatBubble>
               ) : <ChatBubble2 key={index} fecha={msg.fecha} idMensaje={msg.id_mensaje} isFav={msg.favorito}>{msg.texto}</ChatBubble2>
             )
             )
