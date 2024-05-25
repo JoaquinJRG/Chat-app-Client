@@ -3,11 +3,13 @@ import { DotsIcon } from "../../icons/DotsIcon";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { TrashIcon } from "../../icons/TrashIcon";
 import { EditIcon } from "../../icons/EditIcon";
+import { EditModal } from "./EditModal";
 
-export function ChatBubble({ children, fecha, idMensaje, deleteMessage }) {
+export function ChatBubble({ children, fecha, idMensaje, deleteMessage, editMessage }) {
   const date = new Date(Math.trunc(fecha));
   const formattedDate = date.toLocaleTimeString();
   const [showMenu, setShowMenu] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const copyText = () => {
     navigator.clipboard.writeText(children);
@@ -18,14 +20,18 @@ export function ChatBubble({ children, fecha, idMensaje, deleteMessage }) {
   const handleDelete = () => {
     deleteMessage(idMensaje);
     setShowMenu(false);
+    //Mostrar notificación
   };
 
   const handleEdit = () => {
     setShowMenu(false);
-  };
+    setShowEdit(true);
+    //Mostrar notificación
+  }
 
   return (
     <>
+      {showEdit && <EditModal text={children} setShowModal={setShowEdit} editMessage={editMessage} idMsg={idMensaje} />}
       <div className="flex flex-col">
         <div className="flex items-center justify-end gap-2">
           <div className="cursor-pointer">

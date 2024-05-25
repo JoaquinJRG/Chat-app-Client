@@ -60,11 +60,14 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
       setMessajeList(prevList => prevList.filter(msg => msg.id_mensaje !== id));
     });
 
+    newSocket.on("message_edited", ({ newText, idMsg }) => {
+      setMessajeList(prevList => prevList.map(msg => msg.id_mensaje === idMsg ? { ...msg, texto: newText } : msg));
+    });
+
     newSocket.on('disconnect', () => {
       console.log('Desconectado del servidor Socket.IO id Chat: ' + idChat);
     });
 
-    // Guardar el socket en el estado
     setSocket(newSocket);
 
     //Mostrar botón
@@ -82,6 +85,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
       newSocket.off("recive_message");
       newSocket.off("is_typing");
       newSocket.off("message_deleted");
+      newSocket.off("message_edited");
       chatDiv.removeEventListener("scroll", handleScroll)
     };
   }, []);
@@ -126,6 +130,11 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
     setMessajeList(prevList => prevList.filter(msg => msg.id_mensaje !== id));
   };
 
+  const editMessage = (newText, idMsg) => {
+    socket.emit("edit_message", { newText: newText, idMensaje: idMsg, idChat: idChat });
+    setMessajeList(prevList => prevList.map(msg => msg.id_mensaje === idMsg ? { ...msg, texto: newText } : msg));
+  };
+
   return (
     <div className={`lg:py-4 lg:px-8 lg:w-2/3 w-full h-[95vh] lg:h-screen absolute lg:static fade-in-up`}>
       <div className="px-4 h-full bg-white lg:rounded-xl lg:shadow-md">
@@ -153,7 +162,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
             messajeList &&
             messajeList.map((msg, index) => (
               msg.usuario_envia == myId ? (
-                <ChatBubble key={index} fecha={msg.fecha} idMensaje={msg.id_mensaje} deleteMessage={deleteMessage}>{msg.texto}</ChatBubble>
+                <ChatBubble key={index} fecha={msg.fecha} idMensaje={msg.id_mensaje} deleteMessage={deleteMessage} editMessage={editMessage}>{msg.texto}</ChatBubble>
               ) : <ChatBubble2 key={index} fecha={msg.fecha} idMensaje={msg.id_mensaje} isFav={msg.favorito}>{msg.texto}</ChatBubble2>
             )
             )
