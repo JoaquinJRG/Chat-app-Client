@@ -2,8 +2,6 @@ import { useState } from "react";
 import { DotsIcon } from "../../icons/DotsIcon";
 import { StarIcon } from "../../icons/StarIcon";
 import { CopyIcon } from "../../icons/CopyIcon";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
   const date = new Date(Math.trunc(fecha));
@@ -15,16 +13,6 @@ export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
     navigator.clipboard.writeText(children);
     setShowMenu(false);
     //Mostrar notificación
-    toast.success('Mensaje copiado', {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
   };
 
   const addToFavorites = () => {
@@ -34,23 +22,12 @@ export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
         if (data) {
           setShowMenu(false);
           //Mostrar notificación
-          toast.success('Mensaje añadido a favoritos', {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
         }
       });
   };
 
   return (
     <div className="flex flex-col mb-2">
-      <ToastContainer />
       <div className="flex items-center justify-start gap-2">
         <div className="flex items-center px-5 py-2 min-w-28 max-w-64 bg-[#F4F8FB] text-xl text-wrap text-center rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-md">
           <p>{children}</p>
