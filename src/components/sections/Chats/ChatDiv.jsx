@@ -35,7 +35,6 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
 
     // Manejar eventos del servidor
     newSocket.on('connect', () => {
-      console.log('Conectado al servidor Socket.IO. id Chat: ' + idChat);
       newSocket.emit("join_room", idChat);
 
       newSocket.on("recive_message", (data) => {
@@ -62,10 +61,6 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
 
     newSocket.on("message_edited", ({ newText, idMsg }) => {
       setMessajeList(prevList => prevList.map(msg => msg.id_mensaje === idMsg ? { ...msg, texto: newText } : msg));
-    });
-
-    newSocket.on('disconnect', () => {
-      console.log('Desconectado del servidor Socket.IO id Chat: ' + idChat);
     });
 
     setSocket(newSocket);
