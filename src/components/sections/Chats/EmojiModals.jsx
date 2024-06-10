@@ -65,25 +65,25 @@ export function EmojiModal({ text, setText }) {
         </section>
         <section className="flex gap-2 mt-2">
           <button
-            className=""
+            className=" hover:text-indigo-500"
             onClick={() => setCategory("all")}
           >
-            All
+            Todo
           </button>
           <button
-            className=""
+            className=" hover:text-indigo-500"
             onClick={() => setCategory("smileys-emotion")}
           >
             Emociones
           </button>
           <button
-            className=""
+            className=" hover:text-indigo-500"
             onClick={() => setCategory("animals-nature")}
           >
             Animales
           </button>
           <button
-            className=""
+            className=" hover:text-indigo-500"
             onClick={() => setCategory("food-drink")}
           >
             Comida
