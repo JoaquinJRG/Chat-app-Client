@@ -6,12 +6,14 @@ import { ProfilePic } from "../Home/ProfilePic";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { DeleteModal } from "./DeleteModal";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ProfileContext } from "../../../context/Profile";
 
 export function Settings({ setIsLogged }) {
 
   const userData = JSON.parse(localStorage.getItem("userData"))
   const [showDeleteModal, setDeleteModal] = useState(false);
+  const { profilePic, setProfilePic } = useContext(ProfileContext);
 
   const copyId = () => {
     navigator.clipboard.writeText(userData.id);
@@ -37,7 +39,23 @@ export function Settings({ setIsLogged }) {
     fetch("https://chat-app-server-6z6f.onrender.com/addImg", {
       method: "POST",
       body: data
-    }).then(res => res.json()).then(data => console.log(data));
+    }).then(res => res.json())
+      .then(data => {
+
+        console.log(data)
+        setProfilePic(!profilePic)
+
+        toast.success('Imagen añadida correctamente', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      });
 
   }
 

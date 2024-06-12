@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { UserIcon } from "../../icons/UserIcon";
+import { ProfileContext } from "../../../context/Profile";
 
 export function ProfilePic() {
 
   const userData = JSON.parse(localStorage.getItem("userData"));
   const [id, setId] = useState(userData.id);
   const [imageBase64, setImageBase64] = useState(false);
+  const { profilePic } = useContext(ProfileContext);
 
   useEffect(() => {
     fetch(`https://chat-app-server-6z6f.onrender.com/img/${id}`)
@@ -13,7 +15,7 @@ export function ProfilePic() {
       .then(data => {
         setImageBase64(data[0].img_perfil)
       })
-  }, [])
+  }, [profilePic])
 
   return (
     <div className="flex flex-col items-center gap-1">
