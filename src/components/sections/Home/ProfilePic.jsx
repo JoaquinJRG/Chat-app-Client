@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { UserIcon } from "../../icons/UserIcon";
 import { ProfileContext } from "../../../context/Profile";
 
