@@ -48,7 +48,7 @@ export function Settings({ setIsLogged }) {
         theme: "light",
       });
     } else {
-      fetch("http://localhost:4000/addImg", {
+      fetch("https://chat-app-server-6z6f.onrender.com/addImg", {
         method: "POST",
         body: data
       }).then(res => res.json())
