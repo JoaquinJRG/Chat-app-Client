@@ -36,27 +36,38 @@ export function Settings({ setIsLogged }) {
     data.append("img", event.target.image.files[0]);
     data.append("id", userData.id);
 
-    fetch("https://chat-app-server-6z6f.onrender.com/addImg", {
-      method: "POST",
-      body: data
-    }).then(res => res.json())
-      .then(data => {
-
-        console.log(data)
-        setProfilePic(!profilePic)
-
-        toast.success('Imagen añadida correctamente', {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+    if (data.get("img") == "undefined") {
+      toast.error('No hay imagen seleccionada', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
       });
+    } else {
+      fetch("http://localhost:4000/addImg", {
+        method: "POST",
+        body: data
+      }).then(res => res.json())
+        .then(data => {
 
+          setProfilePic(!profilePic)
+
+          toast.success('Imagen añadida correctamente', {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        });
+    }
   }
 
   return (
