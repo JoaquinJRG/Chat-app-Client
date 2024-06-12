@@ -123,10 +123,6 @@ export function Settings({ setIsLogged }) {
           </div>
         </section>
         <section className="fade-in-up">
-          <h2 className="text-3xl mb-5 mt-10">Tema</h2>
-          <button>Cambiar a tema oscuro</button>
-        </section>
-        <section className="fade-in-up">
           <h2 className="text-3xl mb-5 mt-10">Cuenta</h2>
           <button
             onClick={() => setDeleteModal(true)}
