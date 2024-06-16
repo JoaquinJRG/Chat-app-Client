@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { DotsIcon } from "../../icons/DotsIcon";
 import { StarIcon } from "../../icons/StarIcon";
 import { CopyIcon } from "../../icons/CopyIcon";
