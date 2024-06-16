@@ -15,7 +15,11 @@ export function DeleteModal({ setShowModal, setIsLogged }) {
   const handleClick = () => {
     fetch(`https://chat-app-server-6z6f.onrender.com/deleteUser/${idUser}`, { method: "DELETE" })
       .then(res => res.json())
-      .then(data => setIsLogged(false));
+      .then(() => {
+        localStorage.removeItem("isLogged");
+        setIsLogged(false);
+      }
+      );
   };
 
   return (
