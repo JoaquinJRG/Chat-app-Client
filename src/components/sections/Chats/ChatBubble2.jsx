@@ -3,6 +3,7 @@ import { DotsIcon } from "../../icons/DotsIcon";
 import { StarIcon } from "../../icons/StarIcon";
 import { CopyIcon } from "../../icons/CopyIcon";
 import { LanguajeIcon } from "../../icons/LanguajeIcon";
+import { LanguageContext } from "../../../context/Languaje";
 
 export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
   const date = new Date(Math.trunc(fecha));
@@ -10,6 +11,7 @@ export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
   const [showMenu, setShowMenu] = useState(false);
   const [showFav, setShowFav] = useState(isFav);
   const [text, setText] = useState(children);
+  const { language, setLanguage } = useContext(LanguageContext);
 
   const copyText = () => {
     navigator.clipboard.writeText(children);
@@ -38,7 +40,7 @@ export function ChatBubble2({ children, fecha, idMensaje, isFav }) {
       },
       body: new URLSearchParams({
         source_language: 'auto',
-        target_language: 'es',
+        target_language: language,
         text: children
       })
     };

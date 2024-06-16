@@ -24,7 +24,7 @@ export function Home({ setIsLogged }) {
     <div className="h-screen">
       <header className="flex items-center bg-white w-full h-10 lg:hidden fixed z-50 shadow-sm">
         <button
-          className="px-3"
+          className="px-3 hover:text-indigo-500 transition-colors"
           onClick={() => setOpenSidebar(!openSidebar)}
         >
           {openSidebar ? <XIcon /> : <MenuIcon />}
@@ -42,7 +42,7 @@ export function Home({ setIsLogged }) {
         </aside>
         <section
           onClick={handleOutsideClick}
-          className={`bg-[#F4F8FB] w-screen h-screen overflow-hidden ${openSidebar ? "z-30 blur-sm select-none" : ""}`}
+          className={`bg-[#F4F8FB] w-screen h-screen  overflow-y-scroll ${openSidebar ? "z-30 blur-sm select-none" : ""}`}
         >
           {openHome && <HomeSection setOpenChats={setOpenChats} setOpenHome={setOpenHome} />}
           {openChats && <Chats />}

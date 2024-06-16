@@ -8,12 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { DeleteModal } from "./DeleteModal";
 import { useState, useContext } from "react";
 import { ProfileContext } from "../../../context/Profile";
+import { LanguageContext } from "../../../context/Languaje";
 
 export function Settings({ setIsLogged }) {
 
   const userData = JSON.parse(localStorage.getItem("userData"))
   const [showDeleteModal, setDeleteModal] = useState(false);
   const { profilePic, setProfilePic } = useContext(ProfileContext);
+  const { language, setLanguage } = useContext(LanguageContext);
 
   const copyId = () => {
     navigator.clipboard.writeText(userData.id);
@@ -70,6 +72,10 @@ export function Settings({ setIsLogged }) {
     }
   }
 
+  const handleChange = (e) => {
+    setLanguage(e.target.value);
+  }
+
   return (
     <main className="mt-10 lg:mt-0">
       {showDeleteModal && <DeleteModal setShowModal={setDeleteModal} setIsLogged={setIsLogged} />}
@@ -120,6 +126,18 @@ export function Settings({ setIsLogged }) {
                 />
               </form>
             </div>
+          </div>
+        </section>
+        <section className="fade-in-up">
+          <h2 className="text-3xl mb-5 mt-10">Traducción</h2>
+          <div className="flex gap-5">
+            <p htmlFor="language">Selecciona idioma al que traducir:</p>
+            <select name="language" id="language" onChange={handleChange} value={language}>
+              <option value="es">Español</option>
+              <option value="en">Inglés</option>
+              <option value="fr">Francés</option>
+              <option value="de">Alemán</option>
+            </select>
           </div>
         </section>
         <section className="fade-in-up">
