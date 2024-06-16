@@ -132,7 +132,7 @@ export function Settings({ setIsLogged }) {
           <h2 className="text-3xl mb-5 mt-10">Traducción</h2>
           <div className="flex gap-5">
             <p htmlFor="language">Selecciona idioma al que traducir:</p>
-            <select name="language" id="language" onChange={handleChange} value={language}>
+            <select name="language" id="language" onChange={handleChange} value={language} className="py-1 px-2 rounded-md outline-indigo-500">
               <option value="es">Español</option>
               <option value="en">Inglés</option>
               <option value="fr">Francés</option>
