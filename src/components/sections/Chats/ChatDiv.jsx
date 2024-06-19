@@ -167,7 +167,7 @@ export function ChatDiv({ setIdChat, setShowChatDiv, idChat, myId, userId, nameU
             showScrollButton && (
               <div
                 onClick={scrollDown}
-                className="absolute bottom-24 right-16 w-10 h-10 flex items-center justify-center bg-white text-indigo-500 border border-indigo-500 rounded-xl transition-all cursor-pointer hover:bg-indigo-500 hover:text-white"
+                className="absolute bottom-24 right-16 w-10 h-10 flex items-center justify-center bg-white text-indigo-500 border border-indigo-500 rounded-xl transition-all cursor-pointer shadow-lg hover:-translate-y-1"
               >
                 <ArrowDownIcon />
               </div>
