@@ -21,7 +21,7 @@ export function Home({ setIsLogged }) {
   }
 
   return (
-    <div className="h-screen">
+    <div className="h-dvh">
       <header className="flex items-center bg-white w-full h-10 lg:hidden fixed z-50 shadow-sm">
         <button
           className="px-3 hover:text-indigo-500 transition-colors"
@@ -30,8 +30,8 @@ export function Home({ setIsLogged }) {
           {openSidebar ? <XIcon /> : <MenuIcon />}
         </button>
       </header>
-      <main className="lg:pt-0 h-screen flex">
-        <aside className={`bg-white w-60 h-screen lg:flex z-40 shadow-xl ${openSidebar ? 'flex absolute fade-in-right' : 'hidden lg:flex '}`} >
+      <main className="lg:pt-0 h-dvh flex">
+        <aside className={`bg-white w-60 h-dvh lg:flex z-40 shadow-xl ${openSidebar ? 'flex absolute fade-in-right' : 'hidden lg:flex '}`} >
           <MyNavbar
             openHome={openHome} setOpenHome={setOpenHome}
             openChats={openChats} setOpenChats={setOpenChats}
@@ -42,7 +42,7 @@ export function Home({ setIsLogged }) {
         </aside>
         <section
           onClick={handleOutsideClick}
-          className={`bg-[#F4F8FB] w-screen h-screen  overflow-y-scroll ${openSidebar ? "z-30 blur-sm select-none" : ""}`}
+          className={`bg-[#F4F8FB] w-screen h-dvh  overflow-y-scroll ${openSidebar ? "z-30 blur-sm select-none" : ""}`}
         >
           {openHome && <HomeSection setOpenChats={setOpenChats} setOpenHome={setOpenHome} />}
           {openChats && <Chats />}
